@@ -4,7 +4,7 @@
   'use strict';
 
   Application.Router.map(function(){ // The map method is invoked to define URL mappings.
-  this.route('login', {path: '/login'}); // When the user visits /login, Ember.js will render the login template.
+  this.route('login', {path: '/'}); // When the user visits /login, Ember.js will render the login template.
   this.route('posts', {path: '/posts'});
 });
 
