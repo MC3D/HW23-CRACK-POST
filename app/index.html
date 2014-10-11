@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CRACK POST</title>
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body>
+
+    <script type="text/x-handlebars" data-template-name="application">
+      <div>
+        <h1>CRACK POST</h1>
+        {{outlet}} <!-- Outlets specify a point in a parent template where the router can attach a view. -->
+      </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="rooms">
+      <ul class="rooms">
+        <!-- {{#each rooms}}
+          <li>{{room}}</li>
+        {{/each}} -->
+      </ul>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="posts">
+      {{input type="text" class='new-post' placeholder="What are you thinking?" value=newPost action='createPost'}}
+
+      <ul class="posts">
+        {{#each}}
+          <li>{{username}}:{{message}}:{{timestamp}}</li>
+        {{/each}}
+      </ul>
+
+      {{input type="search" value=filteredBy}}
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="login">
+      <h1>Enter Site Description Here</h1>
+      <h1>Log In Here</h1>
+      {{input type="text" value=username placeholder='User Name'}}
+      {{input type="text" value=email placeholder='E-mail'}}
+      <button {{action "logIn"}}>Log In</button>
+    </script>
+
+    <!-- build:js js/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/handlebars/handlebars.js"></script>
+    <script src="bower_components/ember/ember.js"></script>
+    <script src="bower_components/ember-data/ember-data.js"></script>
+    <script src="bower_components/firebase/firebase.js"></script>
+    <script src="bower_components/emberfire/dist/emberfire.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js js/main.js -->
+    <script src="scripts/application.js"></script>
+    <script src="scripts/router.js"></script>
+    <script src="scripts/models/post.js"></script>
+    <script src="scripts/controllers/posts_controller.js"></script>
+    <script src="scripts/controllers/application_controller.js"></script>
+    <script src="scripts/controllers/login_controller.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>
