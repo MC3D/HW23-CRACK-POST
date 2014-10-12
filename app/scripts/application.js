@@ -4,7 +4,7 @@
   'use strict';
 
   window.Application = Ember.Application.create({
-    LOG_TRANSITIONS: true // To have Ember write out transition events to the log.
+    LOG_TRANSITIONS: true // Write out transition events to the log.
   });
 
   Application.ApplicationAdapter = DS.FirebaseAdapter.extend({
@@ -14,6 +14,13 @@
   	}
 });
 
-  // Application.ApplicationAdapter = DS.FixtureAdapter.extend();
+  var ref = new Firebase('https://crack.firebaseio.com/rooms/');
+    ref.once('value', function(data){
+      data.forEach(function(room){
+        var chatrooms = [];
+        chatrooms.push(room.name());
+        console.log(chatrooms);
+      });
+    });
 
 })();

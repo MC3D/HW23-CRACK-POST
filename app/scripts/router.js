@@ -1,23 +1,38 @@
-/*globals Application, Ember */
+/* globals Application, Ember */
 
-(function () {
+(function() {
   'use strict';
 
-  Application.Router.map(function(){ // The map method is invoked to define URL mappings.
-  this.route('login', {path: '/'}); // When the user visits /login, Ember.js will render the login template.
-  this.route('posts', {path: '/posts'});
-});
+  Application.Router.map(function() { // The map method is invoked to define URL mappings.
+    this.route('login', {
+      path: '/'
+    }); // When the application's URL matches '/', Ember.js will render the login template.
+    this.route('posts', {
+      path: '/posts'
+    });
+    this.route('chatrooms', {
+      path: '/chatrooms'
+    });
+  });
 
-Application.PostsRoute = Ember.Route.extend({ // When the user visits /#, Ember.js will render the post model
-  beforeModel: function(){
-    var user = this.controllerFor('application').get('currentUser');
-    if( ! user ) {
-      this.transitionTo('login');
+  Application.PostsRoute = Ember.Route.extend({
+    beforeModel: function() {
+      var user = this.controllerFor('application').get('currentUser');
+      if (!user) {
+        this.transitionTo('login');
+      }
+    },
+
+    model: function() {
+      return this.store.find('post'); // 'post' references the post model
     }
-  },
+  });
 
-  model: function(){
-    return this.store.find('post'); // 'post' references the post model
-  }
-});
+  Application.ChatroomsRoute = Ember.Route.extend({
+
+    model: function() {
+      var chatrooms = ['general', 'new chat room'];
+      return chatrooms;
+    }
+  });
 })();
