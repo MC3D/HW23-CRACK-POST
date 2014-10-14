@@ -31,11 +31,11 @@
 
       <ul class="posts">
         {{#each}}
-          <li><span class='username'>{{username}}</span>  {{message}}  {{timestamp}}</li>
+          <li><span class='username'>{{username}}</span>  {{message}}  {{formattedDate timestamp}}</li>
         {{/each}}
       </ul>
 
-      {{input type="search" value=filteredBy}}
+      <!-- {{input type="search" value=filterBy}} -->
     </script>
 
     <script type="text/x-handlebars" data-template-name="login">

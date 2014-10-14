@@ -1,11 +1,11 @@
-/*globals Application, DS, moment */
+/*globals Application, DS */
 
 (function () {
   'use strict';
 
   Application.Post = DS.Model.extend({
   username: DS.attr('string'),
-  timestamp: moment(DS.attr('date')).format('MMM DD, YYYY'),
+  timestamp: DS.attr('date'),
   message: DS.attr('string')
 });
 

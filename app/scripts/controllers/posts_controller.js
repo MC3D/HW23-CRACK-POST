@@ -1,35 +1,33 @@
-/*globals Application, Ember*/
+/*globals Application, Ember, moment */
 
-(function () {
+(function() {
   'use strict';
 
   Application.PostsController = Ember.ArrayController.extend({
-  needs: ['application'],
-  newPost: '',
-  filteredBy: '',
+    needs: ['application'],
+    newPost: '',
+    filterBy: '',
 
-  posts: function(){
-    return this.get();
-  },
-  //   var self = this;
-  //   return this.get('model').filter(function(i){
-  //     var username = self.get('filteredBy').toLowerCase();
-  //     var message = i.get('message').toLowerCase();
-  //     return message.match( username );
-  //   });
-  // }.property('filteredBy','@each'),
+    posts: function() {
+      return this.get();
+    },
 
-  actions: {
-    createPost: function(){
-      var username = this.get('controllers.application.currentUser.username');
-      var post = this.store.createRecord('post', {
-        username: username,
-        message: this.get('newPost'),
-        timestamp: new Date()
-      });
-      post.save();
-      this.set('newPost', '');
+    actions: {
+      createPost: function() {
+        var username = this.get('controllers.application.currentUser.username');
+        var post = this.store.createRecord('post', {
+          username: username,
+          message: this.get('newPost'),
+          timestamp: moment()
+        });
+        post.save();
+        this.set('newPost', '');
+      }
     }
-  }
+  });
+
+  Ember.Handlebars.helper('formattedDate', function(timestamp) {
+    return moment(timestamp).format('lll');
 });
+
 })();
