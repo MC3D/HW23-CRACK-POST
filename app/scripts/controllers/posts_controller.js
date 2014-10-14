@@ -18,7 +18,7 @@
         var post = this.store.createRecord('post', {
           username: username,
           message: this.get('newPost'),
-          timestamp: moment()
+          timestamp: new Date()
         });
         post.save();
         this.set('newPost', '');
